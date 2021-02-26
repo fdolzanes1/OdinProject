@@ -10,3 +10,34 @@
                   class: "btn btn-danger" %>
   </div>
 </div>
+
+  <h2>Comments</h2>
+  	<div class="row">
+    <% @article.comments.each do |comment| %>
+    <div class="col-sm-3">
+	  <div class="card">
+    	<div class="card-body">
+	       <h5 class="card-title"><strong>Commenter: </strong><%= comment.commenter %></h5>
+	  	   <p class="card-text"><strong>Comment: </strong><%= comment.body %></p>
+	  	</div>
+	  </div> 
+	</div>
+    <% end %>
+    </div>
+	
+  <hr>
+
+  <h2>Add a comment:</h2>
+    <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+	<p>
+	  <%= form.label :commenter  %><br>
+	  <%= form.text_field :commenter %>
+	</p>
+	<p>
+	  <%= form.label :body %><br>
+	  <%= form.text_area :body %>
+	</p>
+	<p>
+	  <%= form.submit %>
+	</p>
+	<% end %>
